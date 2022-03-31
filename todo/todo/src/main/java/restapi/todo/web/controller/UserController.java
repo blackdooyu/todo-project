@@ -3,7 +3,7 @@ package restapi.todo.web.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import restapi.todo.SessionUser;
+import restapi.todo.web.dto.SessionUser;
 
 import javax.servlet.http.HttpSession;
 

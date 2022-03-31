@@ -1,21 +1,18 @@
 import React, { useState } from 'react';
-
+import axios from 'axios';
 
 
 function DatePicker({name}) {
-
-    const [date,setDate] =useState();
-
-    function changeDate(e){
-       
-        setDate(e.target.value);
-      }
-
+    
     return (
         <div>
-        <h1>{name}님의 {date}</h1>    
-        <h1>Todo List</h1>  
-        <input type="date" onChange={changeDate} />
+        <h1>{name}님의 Todo List</h1>    
+        <h3>기본 값: 오늘</h3>
+        <a href= "http://localhost:8080/logout"
+                
+               >
+              로그아웃
+               </a>
         </div>
     );
 }

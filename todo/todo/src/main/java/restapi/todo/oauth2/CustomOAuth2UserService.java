@@ -9,7 +9,7 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
-import restapi.todo.SessionUser;
+import restapi.todo.web.dto.SessionUser;
 import restapi.todo.domain.entity.User;
 import restapi.todo.domain.repository.UserRepository;
 
@@ -24,9 +24,13 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     private final HttpSession httpSession;
 
 
+    /**
+     * 로그인 성공 후 카카오 , 구글에게 응답받은 데이터를 스펙에 맞추어 파싱한 후
+     * 신규회원일경우 Name, Email 값을 DB에 저장해준다
+     * 사용자 특정을 위해 Session 에 저장
+     */
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
-        System.out.println("========================");
 
         OAuth2UserService<OAuth2UserRequest,OAuth2User> delegate = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = delegate.loadUser(userRequest);

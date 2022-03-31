@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 @RestControllerAdvice
 public class ExceptionHandle {
 
+
+    /**
+     * 권한이 없는 요청에 대한 예외를 처리해준다.
+     */
     @ExceptionHandler(UserException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorForm userEx(UserException userException) {

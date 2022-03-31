@@ -1,15 +1,13 @@
 package restapi.todo.domain.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import restapi.todo.domain.entity.User;
 import restapi.todo.domain.entity.todo.Todo;
 import restapi.todo.domain.repository.TodoRepository;
 import restapi.todo.domain.repository.UserRepository;
+import restapi.todo.web.dto.TodoDto;
 import restapi.todo.web.error.UserException;
 
 import java.util.List;
@@ -23,9 +21,9 @@ public class TodoService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void todoSave(Long userId, String todoName) {
+    public void todoSave(Long userId, String todoName,String todoDate) {
         User findUser = userRepository.getById(userId);
-        Todo todo = Todo.createTodo(todoName);
+        Todo todo = Todo.createTodo(todoName,todoDate);
 
         todo.insertUser(findUser);
 
@@ -45,10 +43,15 @@ public class TodoService {
 
     }
 
-    public List<Todo> findByList(Long id) {
-      return todoRepository.findListById(id);
+    // 날짜기준 TodoDto List  반환
+    public List<TodoDto> findByList(Long id,String date) {
+      return todoRepository.getTodoDtoList(id,date);
     }
 
+    /**
+     * 해당 User가 가지고있는 Todo에 대한 요청이 아닐경우
+     * 예외를 던진다.
+     */
     private Todo todoCheck(Long userId, Long todoId) {
         Todo findTodo = todoRepository.findUserTodo(userId, todoId);
         if (findTodo == null) {

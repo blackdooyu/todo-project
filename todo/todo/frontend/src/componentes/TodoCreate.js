@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { MdAdd } from 'react-icons/md';
+import axios from 'axios';
 
 const CircleButton = styled.button`
   background: #38d9a9;
@@ -80,12 +81,46 @@ function TodoCreate() {
 
   const onToggle = () => setOpen(!open);
 
+  const [value,setValue] = useState('');
+
+  const baseUrl = "http://localhost:8080";
+
+  axios.defaults.withCredentials = true;
+
+  const onChange = e => setValue(e.target.value);
+
+  const [date,setDate] =useState("");
+
+  function changeDate(e){
+    e.preventDefault();
+    setDate(e.target.value);
+  }
+
+
+  function saveTodo(){
+  
+    const saveTodo = async () => {
+      await axios.post(baseUrl+"/todo",{
+          todoName: value,
+          localDate: date
+      })
+      .then((response) => {
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+    }
+    saveTodo();
+  }
+
   return (
     <>
       {open && (
         <InsertFormPositioner>
-          <InsertForm>
-            <Input autoFocus placeholder="할 일을 입력 후, Enter 를 누르세요" />
+            <input type="date" onChange={changeDate} />
+          <InsertForm onSubmit={saveTodo}>
+            <Input autoFocus placeholder="날짜 선택 ,할 일 입력 후, Enter 를 누르세요" 
+                    onChange={onChange} value={value}/>
           </InsertForm>
         </InsertFormPositioner>
       )}

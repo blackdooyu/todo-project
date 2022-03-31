@@ -6,6 +6,7 @@ import restapi.todo.domain.entity.User;
 
 import javax.persistence.*;
 
+
 import static javax.persistence.FetchType.*;
 
 @Entity
@@ -18,6 +19,8 @@ public class Todo extends DateTime {
     private Long id;
 
     private String todoName;
+
+    private String todoDate;
 
     @Enumerated(EnumType.STRING)
     private TodoState todoState;
@@ -33,9 +36,10 @@ public class Todo extends DateTime {
     /**
      * 생성 편의 메서드
      */
-    public static Todo createTodo(String todoName) {
+    public static Todo createTodo(String todoName,String todoDate) {
         Todo todo = new Todo();
         todo.todoName = todoName;
+        todo.todoDate = todoDate;
         todo.todoState = TodoState.N;
         return todo;
     }

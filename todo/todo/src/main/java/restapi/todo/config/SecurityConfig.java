@@ -20,6 +20,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private final CustomOAuth2UserService customOAuth2UserService;
 
+
+    /**
+     * 모든 요청에 로그인 필수 (인증,인가)
+     * 로그인에 성공하면 customOAuth2UserService 호출
+     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
@@ -33,11 +38,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("http://localhost:3000")
                 .and()
                 .oauth2Login()
-                .defaultSuccessUrl("http://localhost:3000/about")
+                .defaultSuccessUrl("http://localhost:3000/todo-list")
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
     }
 
+
+    /**
+     *  프론트에서 요청하는 api 허용 설정
+     *
+     */
     @Bean
     public CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration corsConfiguration = new CorsConfiguration();

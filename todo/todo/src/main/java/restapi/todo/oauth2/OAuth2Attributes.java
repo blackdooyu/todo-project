@@ -26,15 +26,14 @@ public class OAuth2Attributes {
     }
 
     public static OAuth2Attributes of(String registrationId,String userNameAttributeName,Map<String,Object> attributes){
-
         if (registrationId.equals("kakao")) {
             return ofKakao(userNameAttributeName, attributes);
         }
+
         return ofGoogle(userNameAttributeName, attributes);
     }
 
     public static OAuth2Attributes ofKakao(String userNameAttributeName,Map<String,Object> attributes){
-        System.out.println("==============================");
         Map<String, Object> kakao_account = (Map<String, Object>) attributes.get("kakao_account");
         Map<String, Object> profile = (Map<String, Object>) kakao_account.get("profile");
 

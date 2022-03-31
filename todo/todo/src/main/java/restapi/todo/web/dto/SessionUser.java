@@ -1,4 +1,4 @@
-package restapi.todo;
+package restapi.todo.web.dto;
 
 import lombok.Data;
 import restapi.todo.domain.entity.User;

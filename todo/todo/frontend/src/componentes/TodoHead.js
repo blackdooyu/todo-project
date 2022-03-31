@@ -50,24 +50,28 @@ function TodoHead() {
 
   axios.defaults.withCredentials = true;
 
+
  async function getUser(){
       await axios.get(baseUrl+"/user")
       .then((response) =>{
-        setUsers(response.data);
-        console.log(response.data)
+        setUsers(response.data);    
+
       })
       .catch((error) => {
-        console.error(error);
+        console.log(error);
       })
     
   }
 
   return (
-   
+    
+  
     <TodoHeadBlock>
+       <div>
+          </div>
        <DatePicker name={user.name}/>
-      <div className="tasks-left"> 개 완료</div>
     </TodoHeadBlock>
+    
     
   );
 }

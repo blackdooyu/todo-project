@@ -1,9 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { MdDone, MdDelete } from 'react-icons/md';
-import axios from 'axios';
-
-
 
 const Remove = styled.div`
   display: flex;
@@ -60,56 +57,15 @@ const Text = styled.div`
     `}
 `;
 
-
-function TodoItem({ id, done, text ,getTodo,date}) {
-
-  const baseUrl = "http://localhost:8080";
-
-  axios.defaults.withCredentials = true;
-
-  function deleteTodo(id){
-    const deleteTodo = async () => {
-      await axios.delete(baseUrl+"/todo",{
-        data: {
-          id: id
-        }
-      })
-      .then((response) => {
-        getTodo(date);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-    }
-    deleteTodo();
-  }
-
-  function updateTodo(id){
-    const deleteTodo = async () => {
-      await axios.put(baseUrl+"/todo",{
-       
-          id: id
-       
-      })
-      .then((response) => {
-        getTodo(date);
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-    }
-    deleteTodo();
-  }
-
+function TodoItem({ id, done, text }) {
   return (
     <TodoItemBlock>
-      <CheckCircle done={done} onClick={() => updateTodo(id)}   >{done && <MdDone />}</CheckCircle>
-      <Text done={done}>{text}</Text>
-      <label onClick={() => deleteTodo(id)}>
-      <Remove>
-        <MdDelete />
-      </Remove>
-      </label>
+        <div>
+      <Text><div> <a href= "http://localhost:8080/oauth2/authorization/kakao"> 카카오톡으로 로그인하기 </a></div></Text>
+     <div>&nbsp; </div>
+      <Text><div> <a href= "http://localhost:8080/oauth2/authorization/google"> 구글로 로그인하기 </a></div></Text>
+      </div>
+
     </TodoItemBlock>
   );
 }
