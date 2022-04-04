@@ -21,7 +21,7 @@ const GlobalStyle = createGlobalStyle`
 
 function App  ()  {
 
-
+  axios.defaults.withCredentials = true;
 
   return (
     <div>

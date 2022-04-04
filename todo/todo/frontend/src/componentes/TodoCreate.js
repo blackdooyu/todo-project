@@ -83,7 +83,7 @@ function TodoCreate() {
 
   const [value,setValue] = useState('');
 
-  const baseUrl = "http://localhost:8080";
+  const baseUrl = "https://todo-list-project.xyz";
 
   axios.defaults.withCredentials = true;
 

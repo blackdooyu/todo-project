@@ -29,7 +29,7 @@ function TodoList() {
 
   const [todos, setTodos] = useState([]);
 
-  const baseUrl = "http://localhost:8080";
+  const baseUrl = "https://todo-list-project.xyz";
 
   axios.defaults.withCredentials = true;
 
@@ -42,8 +42,7 @@ function TodoList() {
       })
       .then((response) =>{
         setTodos(response.data);
-        console.log(response.data);
-        console.log(date);
+        setDate(e.target.value);
       })
       .catch((error) => {
         console.log(error);

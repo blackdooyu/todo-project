@@ -63,7 +63,7 @@ const Text = styled.div`
 
 function TodoItem({ id, done, text ,getTodo,date}) {
 
-  const baseUrl = "http://localhost:8080";
+  const baseUrl = "https://todo-list-project.xyz";
 
   axios.defaults.withCredentials = true;
 

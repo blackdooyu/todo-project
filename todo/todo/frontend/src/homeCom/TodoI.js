@@ -61,9 +61,9 @@ function TodoItem({ id, done, text }) {
   return (
     <TodoItemBlock>
         <div>
-      <Text><div> <a href= "http://localhost:8080/oauth2/authorization/kakao"> 카카오톡으로 로그인하기 </a></div></Text>
+      <Text><div> <a href= "https://todo-list-project.xyz/oauth2/authorization/kakao"> 카카오톡으로 로그인하기 </a></div></Text>
      <div>&nbsp; </div>
-      <Text><div> <a href= "http://localhost:8080/oauth2/authorization/google"> 구글로 로그인하기 </a></div></Text>
+      <Text><div> <a href= "https://todo-list-project.xyz/oauth2/authorization/google"> 구글로 로그인하기 </a></div></Text>
       </div>
 
     </TodoItemBlock>
