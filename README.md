@@ -5,6 +5,7 @@ rest-api의 장점인 서버와 클라이언트의 역할이 명확히 분리되
 제작한 Project는 Aws의 Elastic Beanstalk 를 이용하여 배포하였습니다.
 
 회원가입은 OAuth2를 사용하여 구글,카카오 로그인에 성공 할 경우 이름과 Email 을 scope 로 요청하여
+
 회원으로 저장하게 구현했습니다.
 
 주소 : <a href="https://todo-list-project.xyz"> https://todo-list-project.xyz </a>
