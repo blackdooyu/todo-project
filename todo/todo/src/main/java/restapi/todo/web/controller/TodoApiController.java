@@ -23,6 +23,8 @@ public class TodoApiController {
     private final TodoService todoService;
     private final HttpSession httpSession;
 
+
+
     @GetMapping("/todo")
     public List<TodoDto> getTodo(@RequestParam(required = false) String localDate) {
         SessionUser user = (SessionUser) httpSession.getAttribute("user");

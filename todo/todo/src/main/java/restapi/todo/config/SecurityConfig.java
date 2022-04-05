@@ -22,23 +22,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     /**
-     * 모든 요청에 로그인 필수 (인증,인가)
+     * 요청 권한, 인증,인가
      * 로그인에 성공하면 customOAuth2UserService 호출
      */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers().permitAll()
+                .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .cors()
                 .and()
                 .logout()
-                .logoutSuccessUrl("http://localhost:3000")
+                .logoutSuccessUrl("https://todo-list-project.xyz/")
                 .and()
                 .oauth2Login()
-                .defaultSuccessUrl("http://localhost:3000/todo-list")
+                .defaultSuccessUrl("https://todo-list-project.xyz/todo-list")
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
     }
@@ -52,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration corsConfiguration = new CorsConfiguration();
 
-        corsConfiguration.addAllowedOriginPattern("http://localhost:3000");
+        corsConfiguration.addAllowedOriginPattern("https://todo-list-project.xyz");
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.addAllowedMethod("*");
         corsConfiguration.setAllowCredentials(true);
